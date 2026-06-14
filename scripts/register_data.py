@@ -13,7 +13,7 @@ api.create_repo(repo_id=DATASET_REPO, repo_type='dataset', exist_ok=True)
 print(f'Dataset repo: https://huggingface.co/datasets/{DATASET_REPO}')
 
 api.upload_file(
-    path_or_fileobj='tourism_project/data/tourism.csv',
+    path_or_fileobj='data/tourism.csv',
     path_in_repo='tourism.csv',
     repo_id=DATASET_REPO,
     repo_type='dataset',
