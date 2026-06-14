@@ -15,11 +15,11 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
       - name: Register raw dataset on Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python tourism_project/scripts/register_data.py
+        run: python scripts/register_data.py
 
   data-preparation:
     needs: register-dataset
@@ -30,11 +30,11 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
       - name: Clean, encode, split and upload processed data
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python tourism_project/scripts/prepare_data.py
+        run: python scripts/prepare_data.py
 
   model-training:
     needs: data-preparation
@@ -45,7 +45,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
       - name: Start MLflow tracking server
         run: |
           nohup mlflow ui --host 0.0.0.0 --port 5000 &
@@ -54,7 +54,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           MLFLOW_TRACKING_URI: http://localhost:5000
-        run: python tourism_project/scripts/train_model.py
+        run: python scripts/train_model.py
 
   deploy-to-space:
     needs: [register-dataset, data-preparation, model-training]
@@ -65,8 +65,8 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        run: pip install -r tourism_project/requirements.txt
+        run: pip install -r requirements.txt
       - name: Push deployment files to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python tourism_project/scripts/deploy_app.py
+        run: python scripts/deploy_app.py
