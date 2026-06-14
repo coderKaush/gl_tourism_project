@@ -66,9 +66,9 @@ for name, (est, grid) in CANDIDATE_MODELS.items():
 
 print(f'\nBest model: {best_clf_name}  (F1={top_f1:.4f})')
 
-os.makedirs('tourism_project/model_building', exist_ok=True)
-MODEL_PKL = 'tourism_project/model_building/best_model.pkl'
-FEAT_JSON = 'tourism_project/model_building/feature_columns.json'
+os.makedirs('model_building', exist_ok=True)
+MODEL_PKL = 'model_building/best_model.pkl'
+FEAT_JSON = 'model_building/feature_columns.json'
 with open(MODEL_PKL, 'wb') as fh: pickle.dump(best_clf, fh)
 with open(FEAT_JSON, 'w') as fh: json.dump(list(X_tr.columns), fh)
 
