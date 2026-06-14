@@ -3,6 +3,8 @@ Creates HF dataset repo and uploads tourism.csv."""
 import os
 from huggingface_hub import HfApi, login
 
+token=os.environ['HF_TOKEN']
+
 login(token=os.environ['HF_TOKEN'])
 api = HfApi()
 
