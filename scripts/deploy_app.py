@@ -12,7 +12,7 @@ SPACE_REPO = f'{HF_USER}/tourism-predictor'
 api.create_repo(repo_id=SPACE_REPO, repo_type='space', space_sdk='docker', exist_ok=True)
 print(f'Space ready -> https://huggingface.co/spaces/{SPACE_REPO}')
 
-DEPLOY_DIR = 'tourism_project/deployment'
+DEPLOY_DIR = 'deployment'
 for fname in ['app.py', 'requirements.txt', 'Dockerfile']:
     api.upload_file(
         path_or_fileobj=f'{DEPLOY_DIR}/{fname}',
