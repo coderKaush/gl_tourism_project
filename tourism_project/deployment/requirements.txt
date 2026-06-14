@@ -1,0 +1,9 @@
+# Deployment dependencies for the Streamlit Docker container on Hugging Face Spaces
+# Pinned versions ensure reproducible builds
+streamlit==1.35.0
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.4.2
+xgboost==2.0.3
+huggingface_hub==0.23.2
+requests==2.32.2
